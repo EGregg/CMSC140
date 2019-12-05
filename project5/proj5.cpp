@@ -9,27 +9,26 @@ const int MAX = 9;  // The value of the largest number
 
 					// Function prototypes
 					//bool isMagicSquare(int arrayRow1[], int arrayRow2[], int arrayRow3[], int size);
-					//bool checkRange(int arrayRow1[], int arrayRow2[], int arrayRow3[], int size, int min, int max);
+bool checkRange(int arrayRow1[], int arrayRow2[], int arrayRow3[], int size, int min, int max);
 bool checkUnique(int arrayRow1[], int arrayRow2[], int arrayRow3[], int size);
 bool checkRowSum(int arrayrow1[], int arrayrow2[], int arrayrow3[], int size);
 bool checkColSum(int arrayrow1[], int arrayrow2[], int arrayrow3[], int size);
 bool checkDiagSum(int arrayrow1[], int arrayrow2[], int arrayrow3[], int size);
-//void fillArray(int arrayRow1[], int arrayRow2[], int arrayRow3[], int size);
-//void showArray(int arrayrow1[], int arrayrow2[], int arrayrow3[], int size);
-void test(int&);
+void fillArray(int (&arrayRow1)[3], int (&arrayRow2)[3], int (&arrayRow3)[3], int size); //is there a different way to prototype a function using a reference array?
+void showArray(int arrayrow1[], int arrayrow2[], int arrayrow3[], int size);
+//void test(int&);
 
 int main()
 {
 	int array1[] = { 8, 1, 6 };
 	int array2[] = { 3, 5, 7 };
 	int array3[] = { 4, 9, 2 };
-	int foobar;
 
 	/* Define a Lo Shu Magic Square using 3 parallel arrays corresponding to each row of the grid */
 	//int magicArrayRow1[COLS], magicArrayRow2[COLS], magicArrayRow3[COLS];
 
-	test(foobar);
-	cout << foobar << endl;
+	fillArray(array1, array2, array3, 3);
+	cout << checkRange(array1, array2, array3, 3, MIN, MAX) << endl;
 	cout << checkUnique(array1, array2, array3, 3) << endl;
 	cout << checkRowSum(array1, array2, array3, 3) << endl;
 	cout << checkColSum(array1, array2, array3, 3) << endl;
@@ -118,13 +117,13 @@ bool checkUnique(int arrayRow1[], int arrayRow2[], int arrayRow3[], int size)
 bool checkRowSum(int arrayrow1[], int arrayrow2[], int arrayrow3[], int size)
 {
 
-	int total1=0, total2=0, total3=0;
+	int total1 = 0, total2 = 0, total3 = 0;
 
 	for (int i = 0; i < size; i++)
 	{
 		total1 += arrayrow1[i];
 	}
-	
+
 	for (int i = 0; i < size; i++)
 	{
 		total2 += arrayrow2[i];
@@ -180,7 +179,7 @@ bool checkDiagSum(int arrayrow1[], int arrayrow2[], int arrayrow3[], int size)
 	}
 }
 
-void fillArray(int arrayRow1[], int arrayRow2[], int arrayRow3[], int size)
+void fillArray(int (&arrayRow1)[3], int (&arrayRow2)[3], int (&arrayRow3)[3], int size)
 {
 	int i = 0, j = 0, k = 0;
 	while (i < size)
@@ -199,17 +198,47 @@ void fillArray(int arrayRow1[], int arrayRow2[], int arrayRow3[], int size)
 
 	while (k < size)
 	{
-		cout << "Enter the number for row 2 and column " << k << ":";
+		cout << "Enter the number for row 3 and column " << k << ":";
 		cin >> arrayRow2[k];
 		k++;
 	}
-
-
-
 }
 
-void test(int& foobar)
+bool checkRange(int arrayRow1[], int arrayRow2[], int arrayRow3[], int size, int min, int max)
 {
-	cout << "This is the test\n" << "enter a number: ";
-	cin >> foobar;
+
+	//iterates over an array
+	for (int i = 0; i < size; i++)
+	{
+		//checks if the element of the array is less than the min or greater than the max
+		if (arrayRow1[i] < min || arrayRow1[i] > max || arrayRow2[i] < min || arrayRow2[i] > max || arrayRow3[i] < min || arrayRow3[i] > max)
+		{
+			return false;
+		}
+	}
+	return true;
 }
+
+void showArray(int arrayrow1[], int arrayrow2[], int arrayrow3[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		cout << arrayrow1[i] << " ";
+	}
+
+	for (int i = 0; i < size; i++)
+	{
+		cout << arrayrow2[i] << " ";
+	}
+
+	for (int i = 0; i < size; i++)
+	{
+		cout << arrayrow3[i] << " ";
+	}
+}
+
+//void test(int& foobar)
+//{
+//	cout << "This is the test\n" << "enter a number: ";
+//	cin >> foobar;
+//}
