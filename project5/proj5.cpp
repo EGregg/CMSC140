@@ -21,26 +21,29 @@ void showArray(int arrayRow1[], int arrayRow2[], int arrayRow3[], int size);
 
 int main()
 {
-	int magicArrayRow1[COLS], magicArrayRow2[COLS], magicArrayRow3[COLS];
-
 	/* Define a Lo Shu Magic Square using 3 parallel arrays corresponding to each row of the grid */
-	//int magicArrayRow1[COLS], magicArrayRow2[COLS], magicArrayRow3[COLS];
+	int magicArrayRow1[COLS], magicArrayRow2[COLS], magicArrayRow3[COLS];
 
 	fillArray(magicArrayRow1, magicArrayRow2, magicArrayRow3, 3); //fillArray has to be called first!!!
 	isMagicSquare(magicArrayRow1, magicArrayRow2, magicArrayRow3, 3);
+	showArray(magicArrayRow1, magicArrayRow2, magicArrayRow3, 3);
+
+	////////////////////////////////////////////////////////////////////////////////
+	// code for checking each individual function
+	////////////////////////////////////////////////////////////////////////////////
 	//cout << checkRange(magicArrayRow1, magicArrayRow2, magicArrayRow3, 3, MIN, MAX) << endl;
 	//cout << checkUnique(magicArrayRow1, magicArrayRow2, magicArrayRow3, 3) << endl;
 	//cout << checkRowSum(magicArrayRow1, magicArrayRow2, magicArrayRow3, 3) << endl;
 	//cout << checkColSum(magicArrayRow1, magicArrayRow2, magicArrayRow3, 3) << endl;
 	//cout << checkDiagSum(magicArrayRow1, magicArrayRow2, magicArrayRow3, 3) << endl;
-	showArray(magicArrayRow1, magicArrayRow2, magicArrayRow3, 3);
 
-	// Your code goes here
 	system("pause");
 	return 0;
 }
-// Function definitions go here
 
+////////////////////////////////////////////////////////////////////////////////
+// Magicsquare function that returns true if all the other functions return true
+////////////////////////////////////////////////////////////////////////////////
 bool isMagicSquare(int arrayRow1[], int arrayRow2[], int arrayRow3[], int size)
 {
 	//set these variables for easy readability in the if conditional
@@ -61,6 +64,10 @@ bool isMagicSquare(int arrayRow1[], int arrayRow2[], int arrayRow3[], int size)
 	return true;
 
 }
+
+////////////////////////////////////////////////////////////////////////////////
+//checks if each number is unique in the magic square
+////////////////////////////////////////////////////////////////////////////////
 bool checkUnique(int arrayRow1[], int arrayRow2[], int arrayRow3[], int size)
 {
 
@@ -125,6 +132,9 @@ bool checkUnique(int arrayRow1[], int arrayRow2[], int arrayRow3[], int size)
 	return true;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//function to make sure each row is equal to each other
+////////////////////////////////////////////////////////////////////////////////
 bool checkRowSum(int arrayrow1[], int arrayrow2[], int arrayrow3[], int size)
 {
 
@@ -156,6 +166,9 @@ bool checkRowSum(int arrayrow1[], int arrayrow2[], int arrayrow3[], int size)
 	}
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//function to make sure each column is equal to each other
+////////////////////////////////////////////////////////////////////////////////
 bool checkColSum(int arrayrow1[], int arrayrow2[], int arrayrow3[], int size)
 {
 	int total1 = 0, total2 = 0, total3 = 0;
@@ -175,6 +188,9 @@ bool checkColSum(int arrayrow1[], int arrayrow2[], int arrayrow3[], int size)
 	}
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//function to make sure each diagonal is equal to each other
+////////////////////////////////////////////////////////////////////////////////
 bool checkDiagSum(int arrayrow1[], int arrayrow2[], int arrayrow3[], int size)
 {
 	int total1 = 0, total2 = 0, total3 = 0;
@@ -193,6 +209,9 @@ bool checkDiagSum(int arrayrow1[], int arrayrow2[], int arrayrow3[], int size)
 	}
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//function to fill up the magic square
+////////////////////////////////////////////////////////////////////////////////
 void fillArray(int (&arrayRow1)[3], int (&arrayRow2)[3], int (&arrayRow3)[3], int size)
 {
 	int i = 0, j = 0, k = 0;
@@ -217,6 +236,9 @@ void fillArray(int (&arrayRow1)[3], int (&arrayRow2)[3], int (&arrayRow3)[3], in
 	cin >> arrayRow3[2];
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//function to make sure the range of each number is 1-9
+////////////////////////////////////////////////////////////////////////////////
 bool checkRange(int arrayRow1[], int arrayRow2[], int arrayRow3[], int size, int min, int max)
 {
 
@@ -233,6 +255,9 @@ bool checkRange(int arrayRow1[], int arrayRow2[], int arrayRow3[], int size, int
 	return true;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//function to show the magic square
+////////////////////////////////////////////////////////////////////////////////
 void showArray(int arrayrow1[], int arrayrow2[], int arrayrow3[], int size)
 {
 	for (int i = 0; i < size; i++)
